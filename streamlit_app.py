@@ -68,7 +68,7 @@ if "df" not in st.session_state:
 # Show a section to add a new ticket.
 st.header("Add a ticket")
 
-# We're adding tickets via an `st.form` and some input widgets. If widgets are used
+# We're adding tickets via an st.form and some input widgets. If widgets are used
 # in a form, the app will only rerun once the submit button is pressed.
 with st.form("add_ticket_form"):
     issue = st.text_area("Describe the issue")
@@ -99,7 +99,7 @@ if submitted:
 
 # Show section to view and edit existing tickets in a table.
 st.header("Existing tickets")
-st.write(f"Number of tickets: `{len(st.session_state.df)}`")
+st.write(f"Number of tickets: {len(st.session_state.df)}")
 
 st.info(
     "You can edit the tickets by double clicking on a cell. Note how the plots below "
@@ -107,7 +107,7 @@ st.info(
     icon="✍️",
 )
 
-# Show the tickets dataframe with `st.data_editor`. This lets the user edit the table
+# Show the tickets dataframe with st.data_editor. This lets the user edit the table
 # cells. The edited data is returned as a new dataframe.
 edited_df = st.data_editor(
     st.session_state.df,
@@ -134,14 +134,14 @@ edited_df = st.data_editor(
 # Show some metrics and charts about the ticket.
 st.header("Statistics")
 
-# Show metrics side by side using `st.columns` and `st.metric`.
+# Show metrics side by side using st.columns and st.metric.
 col1, col2, col3 = st.columns(3)
 num_open_tickets = len(st.session_state.df[st.session_state.df.Status == "Open"])
 col1.metric(label="Number of open tickets", value=num_open_tickets, delta=10)
 col2.metric(label="First response time (hours)", value=5.2, delta=-1.5)
 col3.metric(label="Average resolution time (hours)", value=16, delta=2)
 
-# Show two Altair charts using `st.altair_chart`.
+# Show two Altair charts using st.altair_chart.
 st.write("")
 st.write("##### Ticket status per month")
 status_plot = (
